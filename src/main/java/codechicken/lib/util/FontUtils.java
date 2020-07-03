@@ -30,24 +30,19 @@ public class FontUtils {
             switch (mode) {
                 case 2:
                     int q = item.getCount();
-                    String postfix = "";
-                    for (int p = 0; p < 3 && q > 1000; p++) {
-                        q /= 1000;
-                        postfix = prefixes[p];
-                    }
-                    quantity = Integer.toString(q) + postfix;
+                    quantity = I18NUtils.formatLarge(q);
                     break;
                 case 1:
                     quantity = "";
                     if (item.getCount() / 64 > 0) {
-                        quantity += item.getCount() / 64 + "s";
+                        quantity += I18NUtils.formatInteger(item.getCount() / 64) + "s";
                     }
                     if (item.getCount() % 64 > 0) {
-                        quantity += item.getCount() % 64;
+                        quantity += I18NUtils.formatInteger(item.getCount() % 64);
                     }
                     break;
                 default:
-                    quantity = Integer.toString(item.getCount());
+                    quantity = I18NUtils.formatInteger(item.getCount());
                     break;
             }
         }
